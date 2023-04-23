@@ -32,10 +32,10 @@ namespace pong
         Stopwatch stopwatch = new Stopwatch();
 
         //BRUSHES & PENS
-        new SolidBrush redBrush = new SolidBrush(Color.Red);
-        new SolidBrush blueBrush = new SolidBrush(Color.Blue);
-        new SolidBrush whiteBrush = new SolidBrush(Color.White);
-        new Pen whitePen = new Pen(Color.White, 5);
+        SolidBrush redBrush = new SolidBrush(Color.Red);
+        SolidBrush blueBrush = new SolidBrush(Color.Blue);
+        SolidBrush whiteBrush = new SolidBrush(Color.White);
+        Pen whitePen = new Pen(Color.White, 5);
 
 
         //GAME OBJECTS
@@ -51,7 +51,7 @@ namespace pong
         double[] objectVelocitiesXY = new double[] { 0, 0, 0, 0 };
         //TRACKING OBJECT INFORMATION: 0 = BALL 1 = PLAYER1 2 = PLAYER2
         int[] objectDirectionsXY = new int[] { -1, 0, 0, -1, 0, 0 };
-        double[] objectSpeedsXY = new double[] { 0, 7, 7,0,7,7 };
+        double[] objectSpeedsXY = new double[] { 0, 7, 7, 0, 7, 7 };
         public Form1()
         {
             InitializeComponent();
@@ -63,7 +63,7 @@ namespace pong
             if (stopwatch.ElapsedMilliseconds % stopwatchInterval == 0)
             {
                 if (objectSpeedsXY[0] > 0.5) { objectSpeedsXY[0] -= 0.5; }
-                if (objectSpeedsXY[0+3] > 0.5) { objectSpeedsXY[0+3] -= 0.5; }
+                if (objectSpeedsXY[0 + 3] > 0.5) { objectSpeedsXY[0 + 3] -= 0.5; }
             }
 
             if (stopwatch.ElapsedMilliseconds % updatePositionInterval == 0)
@@ -139,12 +139,12 @@ namespace pong
                         objectDirectionsXY[0 + 3] = -1;
                     }
                     objectSpeedsXY[0] = objectSpeedsXY[0] / 2 + objectVelocitiesXY[i - 1];
-                    objectSpeedsXY[0+3] = objectSpeedsXY[0 + 3] / 2 + objectVelocitiesXY[i + 2 - 1];
+                    objectSpeedsXY[0 + 3] = objectSpeedsXY[0 + 3] / 2 + objectVelocitiesXY[i + 2 - 1];
                 }
 
                 //UPDATE OBJECT POSITIONS
-                    gameObjects[i].X += Convert.ToInt32(objectDirectionsXY[i] * objectSpeedsXY[i]);
-                    gameObjects[i].Y += Convert.ToInt32(objectDirectionsXY[i + 3] * objectSpeedsXY[i + 3]);
+                gameObjects[i].X += Convert.ToInt32(objectDirectionsXY[i] * objectSpeedsXY[i]);
+                gameObjects[i].Y += Convert.ToInt32(objectDirectionsXY[i + 3] * objectSpeedsXY[i + 3]);
             }
 
 
